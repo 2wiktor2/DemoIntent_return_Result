@@ -1,5 +1,6 @@
 package com.wiktor.demointent_return_result;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,21 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
         calculate.setOnClickListener(this);
         cancel.setOnClickListener(this);
 
+        Intent intent = getIntent();
+        Bundle myBundle = intent.getExtras();
+
+
+        if (myBundle != null) {
+            int number1 = myBundle.getInt(Constants.KEY_FIRST, 111);
+            int number2 = myBundle.getInt(Constants.KEY_SECOND, 222);
+
+            String nameOfOperation = myBundle.getString(Constants.KEY_SUM, "Any operation");
+
+            operationName.setText(nameOfOperation);
+            tvNumber1.setText("" + number1);
+            tvNumber2.setText("" + number2);
+        } else operationName.setText("Something wrong");
+
 
     }
 
@@ -33,6 +49,9 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_calculate:
+                Intent intentResult = new Intent();
+
+
                 calculate();
                 break;
             case R.id.button_cancel:
@@ -41,10 +60,12 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
         }
 
     }
-    private void calculate(){
+
+    private void calculate() {
 
     }
-    private void cancel(){
+
+    private void cancel() {
 
     }
 }

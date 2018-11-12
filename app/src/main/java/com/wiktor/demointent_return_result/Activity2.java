@@ -17,7 +17,7 @@ public class Activity2 extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_2);
 
         operationName = findViewById(R.id.tv_operation);
-        tvNumber1 = findViewById(R.id.tv_number1);
+        tvNumber1 = findViewById(R.id.edit_text_number1);
         tvNumber2 = findViewById(R.id.tv_number2);
         calculate = findViewById(R.id.button_calculate);
         cancel = findViewById(R.id.button_cancel);
