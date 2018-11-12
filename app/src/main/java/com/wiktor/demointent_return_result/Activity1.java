@@ -12,6 +12,8 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
     TextView operationName, tvNumber1, tvNumber2;
     Button calculate, cancel;
 
+    int number1, number2;
+    int res1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
 
 
         if (myBundle != null) {
-            int number1 = myBundle.getInt(Constants.KEY_FIRST, 111);
-            int number2 = myBundle.getInt(Constants.KEY_SECOND, 222);
+            number1 = myBundle.getInt(Constants.KEY_FIRST, 111);
+            number2 = myBundle.getInt(Constants.KEY_SECOND, 222);
 
             String nameOfOperation = myBundle.getString(Constants.KEY_SUM, "Any operation");
 
@@ -41,31 +43,34 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
             tvNumber1.setText("" + number1);
             tvNumber2.setText("" + number2);
         } else operationName.setText("Something wrong");
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_calculate:
-                Intent intentResult = new Intent();
-
-
                 calculate();
+                createIntent();
+                finish();
                 break;
             case R.id.button_cancel:
-                cancel();
+                finish();
                 break;
         }
-
     }
 
     private void calculate() {
+        res1 = number1 + number2;
 
     }
 
-    private void cancel() {
+    private void createIntent() {
+        Intent intentResult = new Intent();
+//                Bundle myBundle = new Bundle();
+//                myBundle.putInt(Constants.KEY_SUM, res1);
+//                intentResult.putExtras(myBundle);
+        intentResult.putExtra(Constants.KEY_SUM, res1);
+        setResult(RESULT_OK, intentResult);
 
     }
 }
