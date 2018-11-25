@@ -2,9 +2,11 @@ package com.wiktor.demointent_return_result;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addition.setOnClickListener(this);
         subtraction.setOnClickListener(this);
         multyplication.setOnClickListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item1:
+                Toast.makeText(this, "нажата какая-то кнопка1 в меню", Toast.LENGTH_SHORT)
+                        .show();
+                return true;
+            case R.id.menu_item2:
+                Toast.makeText(this, "нажата какая-то кнопка2 в меню", Toast.LENGTH_SHORT)
+                        .show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

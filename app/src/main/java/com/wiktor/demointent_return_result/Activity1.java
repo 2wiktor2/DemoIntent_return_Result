@@ -60,6 +60,7 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
     }
 
     private void calculate() {
+
         res1 = number1 + number2;
 
     }
