@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView myTextTop;
     private TextView resultat;
     private EditText num1, num2;
-    private Button addition, subtraction, multyplication;
 
     int number1;
     int number2;
@@ -33,9 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myTextTop = findViewById(R.id.text_view1);
         num1 = findViewById(R.id.edit_text_number1);
         num2 = findViewById(R.id.edit_text_number2);
-        addition = findViewById(R.id.button_sum);
-        subtraction = findViewById(R.id.button_sub);
-        multyplication = findViewById(R.id.button_mult);
+        Button addition = findViewById(R.id.button_sum);
+        Button subtraction = findViewById(R.id.button_sub);
+        Button multyplication = findViewById(R.id.button_mult);
 
         addition.setOnClickListener(this);
         subtraction.setOnClickListener(this);
@@ -43,66 +42,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item1:
-                Toast.makeText(this, "нажата какая-то кнопка1 в меню", Toast.LENGTH_SHORT)
-                        .show();
-                return true;
-            case R.id.menu_item2:
-                Toast.makeText(this, "нажата какая-то кнопка2 в меню", Toast.LENGTH_SHORT)
-                        .show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_sum:
                 if (takeNumbers()) {
-                    startActivity1();
+                    startActivity(Constants.VALUE_SUM);
                 } else {
-                    Toast.makeText(this, "Введите числа", Toast.LENGTH_LONG).show();
+                    tostik();
                 }
                 break;
             case R.id.button_sub:
                 if (takeNumbers()) {
-                    startActivity2();
+                    startActivity(Constants.VALUE_SUBTRACTION);
                 } else {
-                    Toast.makeText(this, "Введите числа", Toast.LENGTH_LONG).show();
+                    tostik();
                 }
                 break;
 
             case R.id.button_mult:
                 if (takeNumbers()) {
-                    startActivity3();
+                    startActivity(Constants.VALUE_MULTIPLICATION);
                 } else {
-                    Toast.makeText(this, "Введите числа", Toast.LENGTH_LONG).show();
+                    tostik();
                 }
                 break;
         }
     }
 
-    private void startActivity1() {
+    /*    public Intent getIntent(String operation){
+
+
+           return complectedIntent;
+        }*/
+    private void startActivity(String value) {
         Intent intentSum = new Intent(this, Activity1.class);
         Bundle bundleSum = new Bundle();
         bundleSum.putInt(Constants.KEY_FIRST, number1);
         bundleSum.putInt(Constants.KEY_SECOND, number2);
-        bundleSum.putString(Constants.KEY_SUM, "Сложение");
+        bundleSum.putString(Constants.KEY_SUM, value);
         intentSum.putExtras(bundleSum);
         startActivityForResult(intentSum, 11);
     }
 
     private void startActivity2() {
-        Intent intentSub = new Intent(this, Activity2.class);
+        Intent intentSub = new Intent(this, Activity1.class);
         Bundle bundleSub = new Bundle();
         bundleSub.putInt(Constants.KEY_FIRST, number1);
         bundleSub.putInt(Constants.KEY_SECOND, number2);
@@ -112,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void startActivity3() {
-        Intent intentMult = new Intent(this, Activity3.class);
+        Intent intentMult = new Intent(this, Activity1.class);
         Bundle bundleMult = new Bundle();
         bundleMult.putInt(Constants.KEY_FIRST, number1);
         bundleMult.putInt(Constants.KEY_SECOND, number2);
@@ -153,5 +136,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myTextTop.setText("Результат умножения = ");
             } else resultat.setText("Была нажата кнопка Cancel");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item1:
+                Toast.makeText(this, "нажата какая-то кнопка1 в меню", Toast.LENGTH_SHORT)
+                        .show();
+                return true;
+            case R.id.menu_item2:
+                Toast.makeText(this, "нажата какая-то кнопка2 в меню", Toast.LENGTH_SHORT)
+                        .show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void tostik() {
+        Toast.makeText(this, "Введите числа", Toast.LENGTH_LONG).show();
+
     }
 }

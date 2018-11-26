@@ -10,7 +10,8 @@ public class Constants extends AppCompatActivity {
     public static final String KEY_SUBTRACTION = "key_for_button_subtraction";
     public static final String KEY_MULTIPLICATION = "key_for_button_multiplication";
 
-
-
+    public static final String VALUE_SUM = "Сложение";
+    public static final String VALUE_SUBTRACTION = "Вычитание";
+    public static final String VALUE_MULTIPLICATION = "Умножение";
 
 }

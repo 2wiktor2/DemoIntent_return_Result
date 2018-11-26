@@ -14,6 +14,7 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
 
     int number1, number2;
     int res1;
+    String nameOfOperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
             number1 = myBundle.getInt(Constants.KEY_FIRST, 111);
             number2 = myBundle.getInt(Constants.KEY_SECOND, 222);
 
-            String nameOfOperation = myBundle.getString(Constants.KEY_SUM, "Any operation");
+            nameOfOperation = myBundle.getString(Constants.KEY_SUM, "Any operation");
 
             operationName.setText(nameOfOperation);
             tvNumber1.setText("" + number1);
@@ -60,16 +61,23 @@ public class Activity1 extends AppCompatActivity implements View.OnClickListener
     }
 
     private void calculate() {
+        switch (nameOfOperation) {
+            case Constants.VALUE_SUM:
+                res1 = number1 + number2;
+                break;
+            case Constants.VALUE_SUBTRACTION:
+                res1 = number1 - number2;
+                break;
+            case Constants.VALUE_MULTIPLICATION:
+                res1 = number1 * number2;
+                break;
+        }
 
-        res1 = number1 + number2;
 
     }
 
     private void createIntent() {
         Intent intentResult = new Intent();
-//                Bundle myBundle = new Bundle();
-//                myBundle.putInt(Constants.KEY_SUM, res1);
-//                intentResult.putExtras(myBundle);
         intentResult.putExtra(Constants.KEY_SUM, res1);
         setResult(RESULT_OK, intentResult);
 
