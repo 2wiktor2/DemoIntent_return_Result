@@ -84,26 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivityForResult(intentSum, 11);
     }
 
-    private void startActivity2() {
-        Intent intentSub = new Intent(this, Activity1.class);
-        Bundle bundleSub = new Bundle();
-        bundleSub.putInt(Constants.KEY_FIRST, number1);
-        bundleSub.putInt(Constants.KEY_SECOND, number2);
-        bundleSub.putString(Constants.KEY_SUM, "Вычитание");
-        intentSub.putExtras(bundleSub);
-        startActivityForResult(intentSub, 22);
-    }
-
-    private void startActivity3() {
-        Intent intentMult = new Intent(this, Activity1.class);
-        Bundle bundleMult = new Bundle();
-        bundleMult.putInt(Constants.KEY_FIRST, number1);
-        bundleMult.putInt(Constants.KEY_SECOND, number2);
-        bundleMult.putString(Constants.KEY_SUM, "Умножение");
-        intentMult.putExtras(bundleMult);
-        startActivityForResult(intentMult, 33);
-
-    }
 
     private boolean takeNumbers() {
         if (!num1.getText().toString().equals("") && (!num2.getText().toString().equals(""))) {
@@ -122,18 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resultatische = data.getIntExtra(Constants.KEY_SUM, 9999);
                 resultat.setText("" + resultatische);
                 myTextTop.setText("Результат сложения = ");
-            } else resultat.setText("Была нажата кнопка Cancel");
-        } else if (requestCode == 22) {
-            if (resultCode == Activity.RESULT_OK) {
-                resultatische = data.getIntExtra(Constants.KEY_SUBTRACTION, 8888);
-                resultat.setText("" + resultatische);
-                myTextTop.setText("Результат вычитания = ");
-            } else resultat.setText("Была нажата кнопка Cancel");
-        } else if (requestCode == 33) {
-            if (resultCode == Activity.RESULT_OK) {
-                resultatische = data.getIntExtra(Constants.KEY_MULTIPLICATION, 7777);
-                resultat.setText("" + resultatische);
-                myTextTop.setText("Результат умножения = ");
             } else resultat.setText("Была нажата кнопка Cancel");
         }
     }
