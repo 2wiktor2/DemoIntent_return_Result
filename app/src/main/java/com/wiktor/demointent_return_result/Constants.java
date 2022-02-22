@@ -1,8 +1,7 @@
 package com.wiktor.demointent_return_result;
 
-import android.support.v7.app.AppCompatActivity;
 
-public class Constants extends AppCompatActivity {
+public class Constants {
 
     public static final String KEY_FIRST = "key_for_first_number";
     public static final String KEY_SECOND = "key_for_second_number";
